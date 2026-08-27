@@ -15,6 +15,7 @@ import { Route as EmailRouteImport } from './routes/email'
 import { Route as MeetingsRouteImport } from './routes/meetings'
 import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ApiAiRouteImport } from './routes/api/ai'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const ResearchRoute = ResearchRouteImport.update({
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAiRoute = ApiAiRouteImport.update({
   id: '/api/ai',
   path: '/api/ai',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/meetings': typeof MeetingsRoute
   '/planner': typeof PlannerRoute
   '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
   '/api/ai': typeof ApiAiRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/meetings': typeof MeetingsRoute
   '/planner': typeof PlannerRoute
   '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
   '/api/ai': typeof ApiAiRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/meetings': typeof MeetingsRoute
   '/planner': typeof PlannerRoute
   '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
   '/api/ai': typeof ApiAiRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/meetings'
     | '/planner'
     | '/research'
+    | '/settings'
     | '/api/ai'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/meetings'
     | '/planner'
     | '/research'
+    | '/settings'
     | '/api/ai'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/meetings'
     | '/planner'
     | '/research'
+    | '/settings'
     | '/api/ai'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   MeetingsRoute: typeof MeetingsRoute
   PlannerRoute: typeof PlannerRoute
   ResearchRoute: typeof ResearchRoute
+  SettingsRoute: typeof SettingsRoute
   ApiAiRoute: typeof ApiAiRoute
 }
 
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/ai': {
       id: '/api/ai'
       path: '/api/ai'
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   MeetingsRoute: MeetingsRoute,
   PlannerRoute: PlannerRoute,
   ResearchRoute: ResearchRoute,
+  SettingsRoute: SettingsRoute,
   ApiAiRoute: ApiAiRoute,
 }
 export const routeTree = rootRouteImport
